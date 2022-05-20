@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  postgis:
+    container_name: postgis
+    image: kartoza/postgis:14-3.2
+    environment:
+      PGSSENCMODE: disable
+      POSTGRES_DBNAME: gis
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: $PASSWORD
+    volumes:
+      - data:/var/lib/postgresql
+      - ./workout-tbl.sql:/docker-entrypoint-initdb.d/workout-tbl.sql
+    restart: unless-stopped
+    healthcheck:
+      test: ["exit", "0"]
+    ports:
+      - 5432:5432
+
+  pg_tileserv:
+    container_name: pg_tileserv
+    image: pramsey/pg_tileserv:20210421
+    environment:
+      DATABASE_URL: postgres://admin:$PASSWORD@postgis:5432/gis
+    depends_on:
+      - postgis
+    ports:
+      - 7800:7800
+    restart: unless-stopped
+
+volumes:
+  data:
