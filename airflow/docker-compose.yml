@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=airflow_user
       - POSTGRES_PASSWORD=airflow_pass
       - POSTGRES_DB=airflow_db
-  
+
   scheduler:
     image: apache/airflow
     command: airflow scheduler
@@ -17,7 +17,7 @@ services:
       condition: on-failure
     depends_on:
       - postgres
-    env_file: 
+    env_file:
       - .env
     volumes:
       - ./dags:/opt/airflow/dags
