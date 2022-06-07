@@ -1,8 +1,12 @@
 # docker-files
 
-Collection of misc docker files and configurations.
+Collection of docker file configuration starter templates.
 
 ## Contents
+
+### [airflow](./airflow/)
+
+Apache Airflow environment.
 
 ### [jupyter-lab](./jupyter-lab/)
 
