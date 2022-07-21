@@ -13,8 +13,7 @@ services:
   scheduler:
     image: apache/airflow
     command: airflow scheduler
-    restart_policy:
-      condition: on-failure
+    restart: on-failure
     depends_on:
       - postgres
     env_file:
@@ -26,8 +25,7 @@ services:
   webserver:
     image: apache/airflow
     command: airflow webserver
-    restart_policy:
-      condition: on-failure
+    restart: on-failure
     depends_on:
       - postgres
       - scheduler

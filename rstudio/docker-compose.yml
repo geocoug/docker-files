@@ -1,0 +1,19 @@
+---
+version: "3.7"
+
+services:
+
+  rstudio:
+    build: .
+    volumes:
+      - type: bind
+        source: ./rstudio-config
+        target: /home/rstudio/.config/rstudio
+      - type: bind
+        source: ./workspace
+        target: /workspace
+    restart: unless-stopped
+    environment:
+      PASSWORD: $PASSWORD
+    ports:
+      - 8787:8787

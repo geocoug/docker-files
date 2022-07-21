@@ -19,3 +19,7 @@ PostgreSQL + PostGIS + pg_tileserv.
 ### [python-env](./python-env/)
 
 Simple python environment.
+
+### [rstudio](./rstudio/)
+
+Rstudio instance.
