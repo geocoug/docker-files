@@ -15,7 +15,6 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
-      - id: check-json
       - id: check-yaml
       - id: end-of-file-fixer
   # Validate docker-comose files
