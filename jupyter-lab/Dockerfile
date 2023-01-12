@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=jupyter/scipy-notebook
+ARG BASE_CONTAINER=jupyter/scipy-notebook:2023-01-09
 FROM $BASE_CONTAINER
 
 USER root
@@ -16,9 +16,9 @@ RUN mamba install --quiet --yes \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-RUN pip install \
-    'execsql' \
-    'plotly'
+RUN pip install --no-cache-dir \
+    'execsql==1.111.0' \
+    'plotly==5.11.0'
 
 USER ${NB_UID}
 

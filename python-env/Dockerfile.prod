@@ -30,9 +30,8 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 RUN addgroup --system app && \
-    adduser --system --group app
-
-RUN apt-get update && \
+    adduser --system --group app && \
+    apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=staging /usr/local/app/wheels /wheels

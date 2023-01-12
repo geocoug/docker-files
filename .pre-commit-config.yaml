@@ -1,20 +1,43 @@
 ---
+ci:
+  autoupdate_branch: ""
+  autoupdate_schedule: weekly
+  skip: []
+
 repos:
+  # Protect secrets using Gitleaks
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.15.2
+    hooks:
+      - id: gitleaks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
       - id: check-added-large-files
+      - id: check-case-conflict
       - id: check-json
       - id: check-yaml
       - id: end-of-file-fixer
-      - id: mixed-line-ending
-      - id: trailing-whitespace
+  # Validate docker-comose files
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: docker-compose-check
+  # # Dockerfile linter
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint-docker
+        args: [--config, ./.github/linters/.hadolint.yaml]
+  # YAML linter
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.29.0
+    hooks:
+      - id: yamllint
+        args: [--config-file, ./.github/linters/.yaml-lint.yml]
+  # Markdown lint
   - repo: https://github.com/markdownlint/markdownlint
     rev: v0.12.0
     hooks:
       - id: markdownlint
         args: [-t, ~line_length]
-  - repo: https://github.com/IamTheFij/docker-pre-commit
-    rev: v2.1.1
-    hooks:
-      - id: docker-compose-check
