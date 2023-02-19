@@ -1,0 +1,11 @@
+---
+pagetitle: "Test"
+---
+
+::: {.row .justify-content-center .text-center}
+# Test
+:::
+
+::: {.row .justify-content-center .text-center}
+This is a test page.
+:::

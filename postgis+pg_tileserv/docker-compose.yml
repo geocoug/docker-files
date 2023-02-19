@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 
 services:
   postgis:
@@ -14,7 +14,7 @@ services:
       - ./workout-tbl.sql:/docker-entrypoint-initdb.d/workout-tbl.sql
     restart: unless-stopped
     healthcheck:
-      test: ["exit", "0"]
+      test: [ "exit", "0" ]
     ports:
       - 5432:5432
 

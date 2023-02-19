@@ -17,10 +17,21 @@ app.add_middleware(
 
 @app.get("/")
 async def root() -> RedirectResponse:
-    """API root."""
+    """Root is the main entrypoint of the API.
+
+    Returns
+    -------
+        RedirectResponse: Redirect to Swagger docs.
+    """
     return RedirectResponse(url="/docs")
 
 
 @app.get("/hello")
 async def hello() -> HTMLResponse:
+    """Hello world response.
+
+    Returns
+    -------
+        HTMLResponse: Formatted HTML page.
+    """
     return HTMLResponse("<h1>Hello World!</h1>")
