@@ -1,0 +1,17 @@
+{
+	# Global options block
+	# Email key for lets encrypt
+	email email@domain.com
+	# Optional staging lets encrypt for testing. Comment out for production.
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+api.domain.com {
+	reverse_proxy fastapi:8000
+}
+
+domain.com {
+	root * /srv
+	try_files {path} /index.html
+	file_server
+}

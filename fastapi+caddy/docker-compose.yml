@@ -1,0 +1,28 @@
+---
+version: "3.8"
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./index.html:/srv/index.html
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: always
+
+  fastapi:
+    build: .
+    volumes:
+      - .:/usr/local/app
+    depends_on:
+      - caddy
+    restart: always
+
+volumes:
+  caddy_data:
+  caddy_config:

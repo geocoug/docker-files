@@ -1,15 +1,11 @@
 ---
-ci:
-  autoupdate_branch: ""
-  autoupdate_schedule: weekly
-  skip: []
-
 repos:
   # Protect secrets using Gitleaks
   - repo: https://github.com/zricethezav/gitleaks
     rev: v8.15.2
     hooks:
       - id: gitleaks
+  # Base hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -17,12 +13,12 @@ repos:
       - id: check-case-conflict
       - id: check-yaml
       - id: end-of-file-fixer
-  # Validate docker-comose files
+  # Validate docker-compose files
   - repo: https://github.com/IamTheFij/docker-pre-commit
     rev: v2.1.1
     hooks:
       - id: docker-compose-check
-  # # Dockerfile linter
+  # Dockerfile linter
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.1-beta
     hooks:
