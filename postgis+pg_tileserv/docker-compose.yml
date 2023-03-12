@@ -1,13 +1,14 @@
 version: "3.8"
 
 services:
+
   postgis:
     container_name: postgis
-    image: kartoza/postgis:14-3.2
+    image: kartoza/postgis:15-3.3
     environment:
       PGSSENCMODE: disable
-      POSTGRES_DBNAME: gis
-      POSTGRES_USER: admin
+      POSTGRES_DBNAME: $POSTGRES_DBNAME
+      POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $PASSWORD
     volumes:
       - data:/var/lib/postgresql
@@ -20,14 +21,29 @@ services:
 
   pg_tileserv:
     container_name: pg_tileserv
-    image: pramsey/pg_tileserv:20210421
+    image: pramsey/pg_tileserv:20230210
     environment:
-      DATABASE_URL: postgres://admin:$PASSWORD@postgis:5432/gis
+      DATABASE_URL: postgres://$POSTGRES_USER:$PASSWORD@postgis:5432/$POSTGRES_DBNAME
     depends_on:
       - postgis
     ports:
       - 7800:7800
     restart: unless-stopped
+
+  pg_backup:
+    image: kartoza/pg-backup:15-3.3
+    volumes:
+      - ./backups:/backups
+    environment:
+      POSTGRES_HOST: postgis
+      POSTGRES_PORT: 5432
+      POSTGRES_DBNAME: $POSTGRES_DBNAME
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASS: $PASSWORD
+      # REMOVE_BEFORE: 90 # remove backups more than 90 days old
+    restart: always
+    depends_on:
+      - postgis
 
 volumes:
   data:
