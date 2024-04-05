@@ -22,6 +22,7 @@ async def root() -> RedirectResponse:
     Returns
     -------
         RedirectResponse: Redirect to Swagger docs.
+
     """
     return RedirectResponse(url="/docs")
 
@@ -33,5 +34,6 @@ async def hello() -> HTMLResponse:
     Returns
     -------
         HTMLResponse: Formatted HTML page.
+
     """
     return HTMLResponse("<h1>Hello World!</h1>")
