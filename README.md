@@ -9,6 +9,5 @@ Content | Description
 [jupyter-lab](./jupyter-lab/) | Jupyter lab and various data science libraries
 [postgis+pg_tileserv](./postgis%2Bpg_tileserv/) | PostgreSQL + PostGIS + pg_tileserv
 [python-env](./python-env/) | Base Python environment
-[quarto+caddy](./quarto%2Bcaddy/) | Render a Quarto site and serve with Caddy
 [rstudio](./rstudio/) | Rstudio instance
 [zsh](./zsh/) | Custom Zsh environment with Oh My Zsh and Powerlevel10k theme
