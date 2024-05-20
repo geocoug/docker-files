@@ -1,0 +1,16 @@
+---
+services:
+  # https://hub.docker.com/r/axiom/docker-erddap
+  erddap:
+    image: axiom/docker-erddap:2.23-jdk17-openjdk
+    container_name: erddap
+    platform: linux/amd64
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - $PWD/erddap/conf/robots.txt:/usr/local/tomcat/webapps/ROOT/robots.txt
+      - $PWD/erdap/conf/config.sh:/usr/local/tomcat/bin/config.sh
+      - $PWD/erddap/data:/usr/local/tomcat/content/erddap-data
+      - $PWD/erdap/content:/usr/local/tomcat/content/erddap
+      - $PWD/erdap/datasets:/datasets
