@@ -8,12 +8,12 @@ repos:
       - id: check-hooks-apply
   # Protect secrets using Gitleaks
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.18.3
+    rev: v8.18.4
     hooks:
       - id: gitleaks
   # Spell check
   - repo: https://github.com/crate-ci/typos
-    rev: typos-dict-v0.11.20
+    rev: v1.22.9
     hooks:
       - id: typos
   # Supported base hooks
@@ -30,24 +30,30 @@ repos:
       - id: mixed-line-ending
       - id: requirements-txt-fixer
       - id: trailing-whitespace
+  # Hadolint Dockerfile linter
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.13.0-beta
+    hooks:
+      - id: hadolint
+        args: [--config, .hadolint.yaml]
   # YAML linter
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
     hooks:
       - id: yamllint
-        args: [--config-file, ./.linters/.yaml-lint.yml]
+        args: [--config-file, .yaml-lint.yml]
   # SQL linter
   - repo: https://github.com/sqlfluff/sqlfluff
     rev: 3.0.7
     hooks:
       - id: sqlfluff-lint
-        args: [--config, ./.linters/.sqlfluff]
+        args: [--config, .sqlfluff]
   # Markdown lint
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.41.0
     hooks:
       - id: markdownlint
-        args: [-c, ./.linters/.markdownlint.yml]
+        args: [-c, .markdownlint.yml]
         types: [file]
         files: .(md|qmd)$
   # Add trailing commas to calls and literals.
@@ -59,11 +65,11 @@ repos:
   # Replaces Black, Flake8, isort, pydocstyle, pyupgrade, bandit, and autoflake
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.4.8
+    rev: v0.5.0
     hooks:
       # Run the Ruff linter.
       - id: ruff
-        args: [--config=./.linters/.ruff.toml, --fix, --exit-non-zero-on-fix]
+        args: [--config=.ruff.toml, --fix, --exit-non-zero-on-fix]
       # Run the Ruff formatter.
       - id: ruff-format
-        args: [--config=./.linters/.ruff.toml]
+        args: [--config=.ruff.toml]

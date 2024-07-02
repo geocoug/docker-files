@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update -y
 
-RUN pip install --no-cache-dir --upgrade pip==22.3.1
+RUN pip install --no-cache-dir --upgrade pip==24.0
 
 COPY ./requirements.txt .
 
@@ -37,7 +37,7 @@ RUN addgroup --system app && \
 COPY --from=staging /usr/local/app/wheels /wheels
 
 # hadolint ignore=DL3013
-RUN pip install --no-cache-dir --upgrade pip==22.3.1 && \
+RUN pip install --no-cache-dir --upgrade pip==24.0 && \
     pip install --no-cache-dir /wheels/*
 
 COPY . $HOME

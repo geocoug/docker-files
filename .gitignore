@@ -5,4 +5,4 @@
 .local/
 .ipython/
 *cache*
-*.venv/
+**/.venv
