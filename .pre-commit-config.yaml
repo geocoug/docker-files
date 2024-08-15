@@ -13,7 +13,7 @@ repos:
       - id: gitleaks
   # Spell check
   - repo: https://github.com/crate-ci/typos
-    rev: v1.22.9
+    rev: v1.23.6
     hooks:
       - id: typos
   # Supported base hooks
@@ -44,7 +44,7 @@ repos:
         args: [--config-file, .yaml-lint.yml]
   # SQL linter
   - repo: https://github.com/sqlfluff/sqlfluff
-    rev: 3.0.7
+    rev: 3.1.0
     hooks:
       - id: sqlfluff-lint
         args: [--config, .sqlfluff]
@@ -53,7 +53,7 @@ repos:
     rev: v0.41.0
     hooks:
       - id: markdownlint
-        args: [-c, .markdownlint.yml]
+        args: [--disable, MD013]
         types: [file]
         files: .(md|qmd)$
   # Add trailing commas to calls and literals.
@@ -65,7 +65,7 @@ repos:
   # Replaces Black, Flake8, isort, pydocstyle, pyupgrade, bandit, and autoflake
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.5.0
+    rev: v0.6.0
     hooks:
       # Run the Ruff linter.
       - id: ruff
