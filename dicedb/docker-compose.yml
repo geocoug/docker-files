@@ -1,0 +1,7 @@
+---
+services:
+  dicedb:
+    image: dicedb/dicedb:0.0.3
+    platform: linux/amd64
+    ports:
+      - "7379:7379"
